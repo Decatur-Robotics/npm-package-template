@@ -11,31 +11,21 @@ permissions:
   packages: write
 
 jobs:
-  build_and_push:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+       
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.1.0
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build and export
-        uses: docker/build-push-action@v6
-        env:
-          DOCKER_BUILD_SUMMARY: false
-        with:
-          tags: ghcr.io/decatur-robotics/gearbox:latest
-          outputs: type=docker,dest=/tmp/gearbox.tar
-          context: . # Needed for Docker to find files made during the workflow
-
-      - name: Load image
+      - name: Install dependencies
+        run: npm install
+    
+      - name: "Create .npmrc"
         run: |
-          docker load --input /tmp/gearbox.tar
-          docker image ls -a
+          echo "registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
 
-      - name: Sign in to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u decatur-robotics --password-stdin
-
-      - name: Push to GHCR
-        run: docker push ghcr.io/decatur-robotics/gearbox:latest
+      - name: Publish package
+        run: npm publish
