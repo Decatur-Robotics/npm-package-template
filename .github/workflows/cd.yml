@@ -1,14 +1,11 @@
 name: CD
 
 on:
-  workflow_call:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-
-permissions:
-  packages: write
+  workflow_call:
+    secrets:
+      NPM_TOKEN:
+        required: true
 
 jobs:
   publish:
@@ -16,16 +13,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-       
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.1.0
+        with:
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
-        run: npm install
-    
-      - name: "Create .npmrc"
-        run: |
-          echo "registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
+        run: npm ci
 
       - name: Publish package
-        run: npm publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
