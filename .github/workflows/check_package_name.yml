@@ -25,11 +25,9 @@ jobs:
       - name: Check package name
         run: |
           {
+            # This is a delimiter to help parse the output. Not sure how exactly it works, but it does.
             echo "name<<EOF"
             npm pkg get name
             echo "EOF"
           } >> $GITHUB_OUTPUT
         id: check_pkg_name
-
-      - name: Log package name
-        run: cat ${{ steps.check_pkg_name.outputs.name }}
