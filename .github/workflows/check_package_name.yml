@@ -30,3 +30,6 @@ jobs:
             echo "EOF"
           } >> $GITHUB_OUTPUT
         id: check_pkg_name
+
+      - name: Log package name
+        run: cat ${{ steps.check_pkg_name.outputs.name }}
