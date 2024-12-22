@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
   workflow_call:
     outputs:
-      description: "The package name from the package.json file"
-      package_name: ${{ jobs.check_package_name.outputs.name }}
+      package_name:
+        description: "The package name from the package.json file"
+        value: ${{ jobs.check_package_name.outputs.name }}
 
 jobs:
   check_package_name:
