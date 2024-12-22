@@ -11,10 +11,16 @@ jobs:
   ci:
     uses: ./.github/workflows/ci.yml
 
-  cd:
-    if: github.event.repository.name != 'npm-package-template'
+  check_package_name:
     needs:
       - ci
+    uses: ./.github/workflows/check_package_name.yml
+
+  cd:
+    needs:
+      - ci
+      - check_package_name
+    if: needs.check_package_name.outputs.package_name != '"npm-package-template"'
     uses: ./.github/workflows/cd.yml
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -8,9 +8,13 @@ on:
     types: [opened]
 
 jobs:
+  check_package_name:
+    uses: ./.github/workflows/check_package_name.yml
+
   increment:
     runs-on: ubuntu-latest
-    if: github.event.repository.name != 'npm-package-template'
+    needs: check_package_name
+    if: needs.check_package_name.outputs.package_name != '"npm-package-template"'
     steps:
       - name: Checkout
         uses: actions/checkout@v4

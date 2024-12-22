@@ -1,15 +1,17 @@
-name: CD
+name: Check Package Name
 
 on:
   workflow_dispatch:
   workflow_call:
-    secrets:
-      NPM_TOKEN:
-        required: true
+    outputs:
+      description: "The package name from the package.json file"
+      package_name: ${{ jobs.check_package_name.outputs.name }}
 
 jobs:
-  publish:
+  check_package_name:
     runs-on: ubuntu-latest
+    outputs:
+      name: ${{ steps.check_pkg_name.outputs.stdout }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,14 +21,6 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
 
-      - name: Install dependencies
-        run: npm ci
-
       - name: Check package name
         run: npm pkg get name >> $GITHUB_OUTPUT
         id: check_pkg_name
-
-      - name: Publish package
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
