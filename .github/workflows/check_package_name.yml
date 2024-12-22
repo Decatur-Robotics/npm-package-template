@@ -12,7 +12,7 @@ jobs:
   check_package_name:
     runs-on: ubuntu-latest
     outputs:
-      name: ${{ steps.check_pkg_name.outputs.stdout }}
+      name: ${{ steps.check_pkg_name.outputs.name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,5 +23,10 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Check package name
-        run: npm pkg get name >> $GITHUB_OUTPUT
+        run: |
+          {
+            echo "name<<EOF"
+            npm pkg get name
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
         id: check_pkg_name
