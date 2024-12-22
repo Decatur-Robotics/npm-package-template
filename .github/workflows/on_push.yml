@@ -12,7 +12,7 @@ jobs:
     uses: ./.github/workflows/ci.yml
 
   cd:
-    if: github.repository != 'decaturrobotics/npm-package-template'
+    if: github.event.repository.name != 'npm-package-template'
     needs:
       - ci
     uses: ./.github/workflows/cd.yml
