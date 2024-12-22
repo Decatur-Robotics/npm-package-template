@@ -13,7 +13,8 @@
 	],
 	"devDependencies": {
 		"jest": "^29.7.0",
+		"ts-jest": "^29.2.5",
 		"ts-node": "^10.9.2",
-		"ts-jest": "^29.2.5"
+		"eslint": "^9.17.0"
 	}
 }
