@@ -4,6 +4,12 @@
 	"description": "",
 	"author": "Decatur Robotics",
 	"license": "CC0 1.0",
+	"scripts": {
+		"test": "jest",
+		"lint": "eslint . --max-warnings=0",
+		"prettier-fix": "prettier --write ./**/*.{js,tsx,jsx,json,ts}",
+		"prettier-check": "prettier --check ./**/*.{js,tsx,jsx,json,ts}"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Decatur-Robotics/npm-package-template.git"
