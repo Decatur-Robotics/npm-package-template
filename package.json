@@ -1,14 +1,19 @@
 {
-  "name": "npm-package-template",
-  "version": "1.0.0",
-  "description": "",
-  "author": "Decatur Robotics",
-  "license": "CC0 1.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Decatur-Robotics/npm-package-template.git"
-  },
-  "files": [
-    "src/**/*"
-  ]
+	"name": "npm-package-template",
+	"version": "1.0.0",
+	"description": "",
+	"author": "Decatur Robotics",
+	"license": "CC0 1.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Decatur-Robotics/npm-package-template.git"
+	},
+	"files": [
+		"src/**/*"
+	],
+	"devDependencies": {
+		"jest": "^29.7.0",
+		"ts-node": "^10.9.2",
+		"ts-jest": "^29.2.5"
+	}
 }
