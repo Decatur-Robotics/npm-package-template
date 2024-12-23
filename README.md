@@ -13,4 +13,4 @@ Comes with ESLint, Prettier, and Jest set up. To run tests, use `npm test`. To r
 
 Commits to main are automatically published to NPM (provided your CI checks pass and you've changed the package name).
 
-NPM Package Template © 2024 by Decatur Robotics is licensed under CC0 1.0 Universal
+NPM Package Template © 2024 by Decatur Robotics is licensed under the MIT license.
