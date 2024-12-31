@@ -6,6 +6,7 @@ To get started, use this repo as a template and do the following:
 - Update the assignees in .github/dependabot.yml
 - Add your NPM_TOKEN to the repository secrets (needed to publish to NPM)
 - Add your GIT_PUSH_TOKEN to the repository secrets (needed to auto-increment the version number)
+- Import the "Protect Main.json" file to the branch protection settings
 
 Branch protection is set up for the main branch, requiring you to PR into main, have at least one review, and pass CI checks. Creating a PR will also automatically increment the patch number.
 
