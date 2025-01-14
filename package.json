@@ -27,7 +27,7 @@
 		}
 	},
 	"exports": {
-		"./": "./dist/"
+		"./other-file": "./dist/other-file.js"
 	},
 	"main": "dist/index.js",
 	"devDependencies": {
